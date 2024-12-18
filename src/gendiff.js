@@ -1,24 +1,20 @@
 import { program } from 'commander';
 
-const gendiff = (filepath1, filepath2) => `${first}${second}`;
-
-program.name('gendiff').description('Compares two configuration files and shows a difference').version('1.0.0');
-
 program
-  .command('gendiff')
-  .description('Команда  возвращает разницу между данными в виде строки')
-  .argument('<filepath1>', 'первые данные')
-  .argument('<filepath2>', 'вторые данные')
-  .action((filepath1, filepath2) => {
+  .version('0.1.0')
+  .description('Compares two configuration files and shows a difference.')
+  .argument('<filepath1> <filepath2>')
+  .option('-f, --format <type>', 'output format')
+  .action((filepath1, filepath2, options) => {
     // BEGIN
-    const result = gendiff(filepath1, filepath2);
-    console.log(result);
+    const diff = genDiff(filepath1, filepath2, options.format);
+    console.log(diff);
     // END
   });
 
 program.parse();
 
-export default gendiff;
+export default genDiff;
 
 /* const makeWelcome = () => {
   console.log('Welcome to the ...!');
