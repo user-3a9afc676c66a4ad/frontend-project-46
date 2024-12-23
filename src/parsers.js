@@ -1,9 +1,7 @@
-import fs from 'fs';
+// import fs from 'fs';
 
-const parseFile = (filePath) => {
-  const fileData = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(fileData);
-};
+const parseFile = (fileData) => JSON.parse(fileData);
+
 export default parseFile;
 
 // const __filename = fileURLToPath(import.meta.url);
