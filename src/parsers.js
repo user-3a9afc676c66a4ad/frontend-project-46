@@ -1,11 +1,12 @@
 import fs from 'fs';
+
 const parseFile = (filePath) => {
   const fileData = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(fileData);
 };
 export default parseFile;
 
-//const __filename = fileURLToPath(import.meta.url);
+// const __filename = fileURLToPath(import.meta.url);
 
 /* const parse = (filePath) => {
   // const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,7 +21,7 @@ export default parseFile;
 export default parse; */
 // const html = fs.readFileSync(`${__dirname}/../__fixtures__/withLinks.html`, 'utf-8')
 
-//const json = (data) => JSON.stringify(data);
+// const json = (data) => JSON.stringify(data);
 
 /*  const json = '{"result":true, "count":42}';
 const obj = JSON.parse(json);
