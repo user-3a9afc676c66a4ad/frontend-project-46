@@ -1,1 +1,0 @@
-for Read of fs.readFileSync() only

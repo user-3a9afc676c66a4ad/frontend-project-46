@@ -1,7 +1,6 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "type": "module",
   "description": "[![Actions Status](https://github.com/user-3a9afc676c66a4ad/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/user-3a9afc676c66a4ad/frontend-project-46/actions)",
   "main": "src/index.js",
   "bin": {
@@ -14,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/user-3a9afc676c66a4ad/frontend-project-46.git"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "readline-sync": "^1.4.10",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@eslint/create-config": "^1.0.0",
