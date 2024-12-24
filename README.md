@@ -4,4 +4,4 @@
 
 ### An example of comparing flat JSON files
 
-[![asciicast](https://asciinema.org/a/MCorgOqY29OYSDakOAHwfnN4F.svg)](https://asciinema.org/a/MCorgOqY29OYSDakOAHwfnN4F)
+[![asciicast](https://asciinema.org/a/O8cj1V2oeyld9pTz76eKsxLTm.svg)](https://asciinema.org/a/O8cj1V2oeyld9pTz76eKsxLTm)
