@@ -11,7 +11,7 @@ const getDiff = (object1, object2) => {
 
       return { status: 'changed', oldValue: obj1[key], newValue: obj2[key] };
     }
-    const sortedChildren = _.sortBy(genDiff(obj1[key], obj2[key]), ['name']);
+    const sortedChildren = _.sortBy(getDiff(obj1[key], obj2[key]), ['name']);
     return { status: 'has children', children: sortedChildren };
   };
   const result = keys.reduce((acc, key) => {

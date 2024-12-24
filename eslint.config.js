@@ -52,6 +52,7 @@ export default [
       'import/no-named-as-default-member': 'off',
       'no-console': 'off',
       'import/no-extraneous-dependencies': 'off',
+      'object-curly-newline': 'off',
     },
   },
 ];
