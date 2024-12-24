@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1735049441994" clover="3.2.0">
+  <project timestamp="1735049441994" name="All files">
+    <metrics statements="69" coveredstatements="43" conditionals="46" coveredconditionals="20" methods="16" coveredmethods="11" elements="131" coveredelements="74" complexity="0" loc="69" ncloc="69" packages="2" files="6" classes="6"/>
+    <package name="src">
+      <metrics statements="25" coveredstatements="23" conditionals="11" coveredconditionals="9" methods="5" coveredmethods="5"/>
+      <file name="getDiff.js" path="/home/osipov_ov/frontend-project-46/src/getDiff.js">
+        <metrics statements="15" coveredstatements="13" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="2" type="cond" truecount="2" falsecount="2"/>
+        <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+      </file>
+      <file name="index.js" path="/home/osipov_ov/frontend-project-46/src/index.js">
+        <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+      </file>
+      <file name="parsers.js" path="/home/osipov_ov/frontend-project-46/src/parsers.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.formatters">
+      <metrics statements="44" coveredstatements="20" conditionals="35" coveredconditionals="11" methods="11" coveredmethods="6"/>
+      <file name="index.js" path="/home/osipov_ov/frontend-project-46/src/formatters/index.js">
+        <metrics statements="6" coveredstatements="3" conditionals="4" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="plain.js" path="/home/osipov_ov/frontend-project-46/src/formatters/plain.js">
+        <metrics statements="14" coveredstatements="2" conditionals="14" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
+      <file name="stylish.js" path="/home/osipov_ov/frontend-project-46/src/formatters/stylish.js">
+        <metrics statements="24" coveredstatements="15" conditionals="17" coveredconditionals="10" methods="7" coveredmethods="5"/>
+        <line num="3" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="6" type="cond" truecount="2" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
