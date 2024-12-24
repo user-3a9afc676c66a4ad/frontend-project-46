@@ -16,6 +16,13 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
 
   const informationDiff = getDiff(parseFile1, parseFile2);
 
+  /* const obj = {};
+
+  informationDiff.forEach((item) => {
+    const [key, value] = item.split(':');
+    obj[key.trim()] = value.trim();
+  }); */
+
   const dataString = JSON.stringify(informationDiff, null, 2);
 
   return dataString;

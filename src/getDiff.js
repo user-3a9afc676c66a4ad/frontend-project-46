@@ -15,10 +15,15 @@ const getDiff = (obj1, obj2) => {
     }
 
     if (obj1[key] !== obj2[key]) {
-      return [`- ${key}: ${obj1[key]}`]; // Изменилось в obj1
-      // return [`+ ${key}: ${obj2[key]}`]; // Изменилось в obj2
+      let result1 = `- ${key}: ${obj1[key]}`; // Изменилось в obj1
+      let result2 = `+ ${key}: ${obj2[key]}`; // Изменилось в obj2
+      return [result1, result2];
     }
-    return key; // Не изменилось
+
+    if (obj2[key] !== obj1[key]) {
+      return [`+ ${key}: ${obj2[key]}`]; // Изменилось в obj2
+    }
+    return `${key}: ${obj1[key]}`; // Не изменилось
   });
 
   return result;
