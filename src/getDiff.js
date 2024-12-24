@@ -1,32 +1,25 @@
 import _ from 'lodash';
 
-const getDiff = (obj1, obj2) => {
-  const keys1 = _.keys(obj1);
-  const keys2 = _.keys(obj2);
-  const sortedKeys = _.sortBy(_.union(keys1, keys2));
+const getDiff = (object1, object2) => {
+  const keys = Object.keys({ ...object1, ...object2 });
+  const checkElement = (key, obj1, obj2) => {
+    if (!Object.keys(obj1).includes(key)) return { status: 'added', newValue: obj2[key] };
+    if (!Object.keys(obj2).includes(key)) return { status: 'deleted', oldValue: obj1[key] };
 
-  const result = sortedKeys.map((key) => {
-    if (!_.has(obj1, key)) {
-      return `+ ${key}: ${obj2[key]}`; // Добавлено в obj2
+    if (!(_.isObject(obj1[key]) && _.isObject(obj2[key]))) {
+      if (obj1[key] === obj2[key]) return { status: 'unchanged', oldValue: obj1[key] };
+
+      return { status: 'changed', oldValue: obj1[key], newValue: obj2[key] };
     }
-
-    if (!_.has(obj2, key)) {
-      return `- ${key}: ${obj1[key]}`; // Удалено из obj1
-    }
-
-    if (obj1[key] !== obj2[key]) {
-      let result1 = `- ${key}: ${obj1[key]}`; // Изменилось в obj1
-      let result2 = `+ ${key}: ${obj2[key]}`; // Изменилось в obj2
-      return [result1, result2];
-    }
-
-    if (obj2[key] !== obj1[key]) {
-      return [`+ ${key}: ${obj2[key]}`]; // Изменилось в obj2
-    }
-    return `${key}: ${obj1[key]}`; // Не изменилось
-  });
-
-  return result;
+    const sortedChildren = _.sortBy(genDiff(obj1[key], obj2[key]), ['name']);
+    return { status: 'has children', children: sortedChildren };
+  };
+  const result = keys.reduce((acc, key) => {
+    const info = checkElement(key, object1, object2);
+    const element = { name: key, ...info };
+    return [...acc, element];
+  }, []);
+  return _.sortBy(result, ['name']);
 };
 
 export default getDiff;

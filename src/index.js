@@ -3,8 +3,9 @@ import process from 'process'; // cwd
 import fs from 'fs';
 import parseFile from './parsers.js';
 import getDiff from './getDiff.js';
+import formatter from './formatters/index.js';
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const absolutePath1 = path.resolve(process.cwd(), filepath1);
   const absolutePath2 = path.resolve(process.cwd(), filepath2);
 
@@ -16,16 +17,9 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
 
   const informationDiff = getDiff(parseFile1, parseFile2);
 
-  /* const obj = {};
+  // const dataString = JSON.stringify(informationDiff, null, 2);
 
-  informationDiff.forEach((item) => {
-    const [key, value] = item.split(':');
-    obj[key.trim()] = value.trim();
-  }); */
-
-  const dataString = JSON.stringify(informationDiff, null, 2);
-
-  return dataString;
+  return formatter(informationDiff, formatName);
 };
 
 export default genDiff;
