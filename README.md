@@ -15,3 +15,7 @@
 ### An example of comparing flat YAML files
 
 [![asciicast](https://asciinema.org/a/lq53UtuGPrOAQmhPTg42mgPAp.svg)](https://asciinema.org/a/lq53UtuGPrOAQmhPTg42mgPAp)
+
+### An example of recursive file comparison
+
+[![asciicast](https://asciinema.org/a/IWJTIx60eT70JOWoRqJkj5Q5Z.svg)](https://asciinema.org/a/IWJTIx60eT70JOWoRqJkj5Q5Z)
