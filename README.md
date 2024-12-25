@@ -23,3 +23,7 @@
 ### An example of recursive file comparison in plain format
 
 [![asciicast](https://asciinema.org/a/O8ZrJp63yAocmzMtspxe4EKSF.svg)](https://asciinema.org/a/O8ZrJp63yAocmzMtspxe4EKSF)
+
+### An example of recursive file comparison in json format
+
+[![asciicast](https://asciinema.org/a/BTrlPHGjbyFoOQizTIzGwbwl0.svg)](https://asciinema.org/a/BTrlPHGjbyFoOQizTIzGwbwl0)
