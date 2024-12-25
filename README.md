@@ -19,3 +19,7 @@
 ### An example of recursive file comparison
 
 [![asciicast](https://asciinema.org/a/IWJTIx60eT70JOWoRqJkj5Q5Z.svg)](https://asciinema.org/a/IWJTIx60eT70JOWoRqJkj5Q5Z)
+
+### An example of recursive file comparison in plain format
+
+[![asciicast](https://asciinema.org/a/O8ZrJp63yAocmzMtspxe4EKSF.svg)](https://asciinema.org/a/O8ZrJp63yAocmzMtspxe4EKSF)
