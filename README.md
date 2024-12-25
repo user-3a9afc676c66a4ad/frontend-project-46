@@ -11,3 +11,7 @@
 ### An example of comparing flat JSON files
 
 [![asciicast](https://asciinema.org/a/O8cj1V2oeyld9pTz76eKsxLTm.svg)](https://asciinema.org/a/O8cj1V2oeyld9pTz76eKsxLTm)
+
+### An example of comparing flat YAML files
+
+[![asciicast](https://asciinema.org/a/lq53UtuGPrOAQmhPTg42mgPAp.svg)](https://asciinema.org/a/lq53UtuGPrOAQmhPTg42mgPAp)
