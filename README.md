@@ -27,7 +27,7 @@ node.js is not lower than version 18.0.0
 1. Clone the repository
 
 ```bash
-git clone git@github.com:user-3a9afc676c66a4ad/frontend-project-44.git
+git clone git@github.com:user-3a9afc676c66a4ad/frontend-project-46.git
 ```
 
 2. Run the command
@@ -36,7 +36,7 @@ git clone git@github.com:user-3a9afc676c66a4ad/frontend-project-44.git
 make install
 ```
 
-3. Run the command in the root directory Mind Games
+3. Run the command in the root directory
 
 ```bash
 npm link
