@@ -5,19 +5,15 @@ import parseFile from './parsers.js';
 import getDiff from './getDiff.js';
 import formatter from './formatters/index.js';
 
+const extractFormat = (filepath) => path.extname(filepath).slice(1);
+const getData = (filepath) => parseFile(fs.readFileSync(filepath, 'utf-8'), extractFormat(filepath));
+const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const absolutePath1 = path.resolve(process.cwd(), filepath1);
-  const absolutePath2 = path.resolve(process.cwd(), filepath2);
-
-  const file1Data = fs.readFileSync(absolutePath1, 'utf-8');
-  const file2Data = fs.readFileSync(absolutePath2, 'utf-8');
-
-  const parseFile1 = parseFile(file1Data);
-  const parseFile2 = parseFile(file2Data);
+  const parseFile1 = getData(getFullPath(filepath1));
+  const parseFile2 = getData(getFullPath(filepath2));
 
   const informationDiff = getDiff(parseFile1, parseFile2);
-
-  // const dataString = JSON.stringify(informationDiff, null, 2);
 
   return formatter(informationDiff, formatName);
 };

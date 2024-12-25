@@ -12,9 +12,12 @@ const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8'
 const file1OutputJson = readFile('expectedResultJson.txt');
 const file1 = './__fixtures__/file1.json';
 const file2 = './__fixtures__/file2.json';
+// const file3 = './__fixtures__/file1.yaml';
+// const file4 = './__fixtures__/file2.yaml';
 
 describe('comparing  files', () => {
   test('simple using', () => {
     expect(gendiff(file1, file2)).toEqual(file1OutputJson);
+    // expect(gendiff(file3, file4, 'plain')).toEqual(file1OutputJson);
   });
 });

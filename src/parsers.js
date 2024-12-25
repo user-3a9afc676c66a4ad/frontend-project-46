@@ -1,5 +1,14 @@
-// import fs from 'fs';
+import YAML from 'js-yaml';
 
-const parseFile = (fileData) => JSON.parse(fileData);
-
-export default parseFile;
+export default (data, format) => {
+  switch (format) {
+    case 'json':
+      return JSON.parse(data);
+    case 'yml':
+      return YAML.load(data);
+    case 'yaml':
+      return YAML.load(data);
+    default:
+      throw new Error(`'Unknown format! ${format}'`);
+  }
+};
