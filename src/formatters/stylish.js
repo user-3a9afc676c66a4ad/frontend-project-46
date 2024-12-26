@@ -19,12 +19,15 @@ const stylish = (tree) => {
     const levelIndent = getIndent(depth);
     const closeIndent = getIndent(depth, -2);
     const result = '{';
-    const body = node.reduce((acc, { name, status, oldValue, newValue, children }) => {
+    // prettier-ignore
+    const body = node.reduce((acc, {
+      name, status, oldValue, newValue, children,
+    }) => {
       if (status === 'added') return `${acc}\n${levelIndent}+ ${name}: ${styleValue(newValue, depth)}`;
       if (status === 'deleted') return `${acc}\n${levelIndent}- ${name}: ${styleValue(oldValue, depth)}`;
       if (status === 'unchanged') return `${acc}\n${levelIndent}  ${name}: ${styleValue(oldValue, depth)}`;
       if (status === 'changed') return `${acc}\n${levelIndent}- ${name}: ${styleValue(oldValue, depth)}\n${levelIndent}+ ${name}: ${styleValue(newValue, depth)}`;
-      // если дети в обоих файлах были объектами, статус 'has children'
+
       return `${acc}\n${levelIndent}  ${name}: ${stringifyWithDepth(children, depth + 2)}`;
     }, '');
     return `${result}${body}\n${closeIndent}}`;

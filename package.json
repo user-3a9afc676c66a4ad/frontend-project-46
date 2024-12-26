@@ -22,8 +22,7 @@
   "dependencies": {
     "commander": "^12.1.0",
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21",
-    "readline-sync": "^1.4.10"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@eslint/create-config": "^1.0.0",
