@@ -13,7 +13,7 @@ const plain = (tree, path) => {
     if (item.status === 'deleted') return [...acc, `Property '${name}' was removed`];
     if (item.status === 'changed') return [...acc, `Property '${name}' was updated. From ${stringify(item.oldValue)} to ${stringify(item.newValue)}`];
     if (item.status === 'unchanged') return acc;
-    // если дети в обоих файлах были объектами, 'unchanged, has children'
+
     return [...acc, `${plain(item.children, `${name}`)}`];
   }, []);
   const joinedResult = result.join('\n');

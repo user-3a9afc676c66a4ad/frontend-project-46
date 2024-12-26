@@ -1,5 +1,5 @@
-import path from 'path'; // resolve
-import process from 'process'; // cwd
+import path from 'path';
+import process from 'process';
 import fs from 'fs';
 import parseFile from './parsers.js';
 import getDiff from './getDiff.js';
