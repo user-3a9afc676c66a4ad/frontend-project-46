@@ -1,19 +1,22 @@
 import _ from 'lodash';
 
 const getIndent = (depth, additionalSpaces = 0) => ' '.repeat(depth * 2 + additionalSpaces);
+
 const styleValue = (itemValue, oldDepth) => {
   if (!_.isObject(itemValue) || itemValue === null) return `${itemValue}`;
-  const stringify = (data, depth) => {
-    const levelIndent = getIndent(depth, 4);
-    const closeIndent = getIndent(depth, 2);
-    const result = Object.entries(data).reduce((acc, [key, value]) => {
-      const stringifyValue = typeof value === 'object' && value !== null ? stringify(value, depth + 2) : value;
-      return `${acc}\n${levelIndent}  ${key}: ${stringifyValue}`;
-    }, '{');
-    return `${result}\n${closeIndent}}`;
-  };
-  return stringify(itemValue, oldDepth);
+  const levelIndent = getIndent(oldDepth, 4);
+  const closeIndent = getIndent(oldDepth, 2);
+  let result = '{';
+  const entries = Object.entries(itemValue);
+  result += entries.reduce((acc, [key, value]) => {
+    const stringifyValue = typeof value === 'object' && value !== null ? styleValue(value, oldDepth + 2) : value;
+    return `${acc}\n${levelIndent}  ${key}: ${stringifyValue}`;
+  }, '');
+  result += `\n${closeIndent}}`;
+
+  return result;
 };
+
 const stylish = (tree) => {
   const stringifyWithDepth = (node, depth) => {
     const levelIndent = getIndent(depth);
