@@ -37,4 +37,5 @@ const stylish = (tree) => {
   };
   return stringifyWithDepth(tree, 1);
 };
+
 export default stylish;
