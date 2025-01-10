@@ -1,22 +1,34 @@
 import _ from 'lodash';
 
-const stringify = (item) => {
-  if (_.isObject(item)) return '[complex value]';
-  if (typeof item === 'string') return `'${item}'`;
-  return String(item);
+const stringify = (data) => {
+  if (_.isObject(data)) {
+    return '[complex value]';
+  }
+  return typeof data === 'string' ? `'${data}'` : data;
 };
 
-const plain = (tree, path) => {
-  const result = tree.reduce((acc, item) => {
-    const name = path ? `${path}.${item.name}` : `${item.name}`;
-    if (item.status === 'added') return [...acc, `Property '${name}' was added with value: ${stringify(item.newValue)}`];
-    if (item.status === 'deleted') return [...acc, `Property '${name}' was removed`];
-    if (item.status === 'changed') return [...acc, `Property '${name}' was updated. From ${stringify(item.oldValue)} to ${stringify(item.newValue)}`];
-    if (item.status === 'unchanged') return acc;
-
-    return [...acc, `${plain(item.children, `${name}`)}`];
-  }, []);
-  const joinedResult = result.join('\n');
-  return joinedResult;
+const getPlainFormat = (value, parent = '') => {
+  switch (value.type) {
+    case 'added':
+      return `Property '${parent}${value.key}' was added with value: ${stringify(value.value)}`;
+    case 'deleted':
+      return `Property '${parent}${value.key}' was removed`;
+    case 'unchanged':
+      return null;
+    case 'nested':
+      return value.children
+        .map((val) => getPlainFormat(val, `${parent + value.key}.`))
+        .filter((item) => item !== null)
+        .join('\n');
+    case 'changed':
+      return `Property '${parent}${value.key}' was updated. From ${stringify(value.value)} to ${stringify(value.value2)}`;
+    default:
+      throw new Error(`Unknown type: ${value.type}`);
+  }
 };
-export default plain;
+
+export default (plain) => {
+  const formattedElements = plain.map((element) => getPlainFormat(element));
+  const nonNullElements = formattedElements.filter((item) => item !== null);
+  return nonNullElements.join('\n');
+};

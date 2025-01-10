@@ -1,25 +1,34 @@
 import _ from 'lodash';
 
 const getDiff = (object1, object2) => {
-  const keys = Object.keys({ ...object1, ...object2 });
-  const checkElement = (key, obj1, obj2) => {
-    if (!Object.keys(obj1).includes(key)) return { status: 'added', newValue: obj2[key] };
-    if (!Object.keys(obj2).includes(key)) return { status: 'deleted', oldValue: obj1[key] };
+  const keys1 = _.keys(object1);
+  const keys2 = _.keys(object2);
+  const sortedUnicKeys = _.sortBy(_.union(keys1, keys2));
 
-    if (!(_.isObject(obj1[key]) && _.isObject(obj2[key]))) {
-      if (obj1[key] === obj2[key]) return { status: 'unchanged', oldValue: obj1[key] };
-
-      return { status: 'changed', oldValue: obj1[key], newValue: obj2[key] };
+  const resultobject = sortedUnicKeys.map((key) => {
+    if (!Object.hasOwn(object1, key)) {
+      return { key, value: object2[key], type: 'added' };
     }
-    const sortedChildren = _.sortBy(getDiff(obj1[key], obj2[key]), ['name']);
-    return { status: 'has children', children: sortedChildren };
-  };
-  const result = keys.reduce((acc, key) => {
-    const info = checkElement(key, object1, object2);
-    const element = { name: key, ...info };
-    return [...acc, element];
-  }, []);
-  return _.sortBy(result, ['name']);
+
+    if (!Object.hasOwn(object2, key)) {
+      return { key, value: object1[key], type: 'deleted' };
+    }
+
+    if (_.isEqual(object1[key], object2[key])) {
+      return { key, value: object1[key], type: 'unchanged' };
+    }
+
+    if (_.isPlainObject(object1[key]) && _.isPlainObject(object2[key])) {
+      return { key, children: getDiff(object1[key], object2[key]), type: 'nested' };
+    }
+    return {
+      key,
+      value: object1[key],
+      value2: object2[key],
+      type: 'changed',
+    };
+  });
+  return resultobject;
 };
 
 export default getDiff;

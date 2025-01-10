@@ -1,41 +1,40 @@
 import _ from 'lodash';
 
-const getIndent = (depth, additionalSpaces = 0) => ' '.repeat(depth * 2 + additionalSpaces);
-
-const styleValue = (itemValue, oldDepth) => {
-  if (!_.isObject(itemValue) || itemValue === null) return `${itemValue}`;
-  const levelIndent = getIndent(oldDepth, 4);
-  const closeIndent = getIndent(oldDepth, 2);
-  let result = '{';
-  const entries = Object.entries(itemValue);
-  result += entries.reduce((acc, [key, value]) => {
-    const stringifyValue = typeof value === 'object' && value !== null ? styleValue(value, oldDepth + 2) : value;
-    return `${acc}\n${levelIndent}  ${key}: ${stringifyValue}`;
-  }, '');
-  result += `\n${closeIndent}}`;
-
-  return result;
+const signs = {
+  added: '+',
+  deleted: '-',
+  unchanged: ' ',
+  nested: ' ',
 };
 
-const stylish = (tree) => {
-  const stringifyWithDepth = (node, depth) => {
-    const levelIndent = getIndent(depth);
-    const closeIndent = getIndent(depth, -2);
-    const result = '{';
-    // prettier-ignore
-    const body = node.reduce((acc, {
-      name, status, oldValue, newValue, children,
-    }) => {
-      if (status === 'added') return `${acc}\n${levelIndent}+ ${name}: ${styleValue(newValue, depth)}`;
-      if (status === 'deleted') return `${acc}\n${levelIndent}- ${name}: ${styleValue(oldValue, depth)}`;
-      if (status === 'unchanged') return `${acc}\n${levelIndent}  ${name}: ${styleValue(oldValue, depth)}`;
-      if (status === 'changed') return `${acc}\n${levelIndent}- ${name}: ${styleValue(oldValue, depth)}\n${levelIndent}+ ${name}: ${styleValue(newValue, depth)}`;
+const createIndent = (depth) => ' '.repeat(depth * 4 - 2);
 
-      return `${acc}\n${levelIndent}  ${name}: ${stringifyWithDepth(children, depth + 2)}`;
-    }, '');
-    return `${result}${body}\n${closeIndent}}`;
-  };
-  return stringifyWithDepth(tree, 1);
+const stringify = (value, depth = 1) => {
+  if (!_.isObject(value)) {
+    return value;
+  }
+  const keys = Object.keys(value);
+  const formattedKeys = keys.map((key) => `${createIndent(depth + 1)}  ${key}: ${stringify(value[key], depth + 1)}`);
+  return `{\n${formattedKeys.join('\n')}\n  ${createIndent(depth)}}`;
 };
 
-export default stylish;
+const formatStylish = (item, depth = 1) => {
+  switch (item.type) {
+    case 'added':
+    case 'deleted':
+    case 'unchanged':
+      return `${createIndent(depth)}${signs[item.type]} ${item.key}: ${stringify(item.value, depth)}`;
+    case 'changed':
+      // prettier-ignore
+      return `${createIndent(depth)}${signs.deleted} ${item.key}: ${stringify(item.value, depth)}\n${createIndent(depth)}${signs.added} ${item.key}: ${stringify(item.value2, depth)}`;
+    case 'nested':
+      return `${createIndent(depth)}  ${item.key}: {\n${item.children.map((child) => formatStylish(child, depth + 1)).join('\n')}\n ${createIndent(depth)} }`;
+    default:
+      throw new Error(`Unexpected type: ${item.type}`);
+  }
+};
+
+export default (changes) => {
+  const formattedChanges = changes.map((change) => formatStylish(change, 1));
+  return `{\n${formattedChanges.join('\n')}\n}`;
+};
